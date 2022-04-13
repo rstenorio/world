@@ -1,0 +1,9 @@
+com/company/control/CityStore.class
+com/company/JAXRSConfiguration.class
+com/company/boundary/CountryResource.class
+com/company/control/CountryStore.class
+com/company/boundary/CityResource.class
+com/company/entity/Continent.class
+com/company/entity/Country.class
+com/company/PingResource.class
+com/company/entity/City.class
