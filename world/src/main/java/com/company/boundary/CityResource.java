@@ -3,6 +3,7 @@ package com.company.boundary;
 import com.company.control.CityStore;
 import com.company.entity.City;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.inject.Inject;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
@@ -12,6 +13,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 
 @Path("/cities")
@@ -28,8 +30,17 @@ public class CityResource {
     @GET
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public City find(@PathParam("id") Long id) {
+    public City findById(@PathParam("id") Long id) {
         return store.find(id).orElseThrow(() -> new NotFoundException());
     }
+    
+
+    @GET
+    @Path("{city}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public City findByName(@QueryParam("city") String city){
+        return store.findByName(city).orElseThrow(()-> new NotFoundException());
+    }
+    
     
 }

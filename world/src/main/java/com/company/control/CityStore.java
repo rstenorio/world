@@ -46,9 +46,12 @@ public class CityStore {
             return Optional.of(em.createQuery("select e from City e where e.Name = :name", City.class)
                     .getSingleResult());
         } catch (NoResultException ex) {
-            System.out.println("Nome non c'è!!");
             return Optional.empty();
         }
     }
+    
+    
+    
+    
     
 }
