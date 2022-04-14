@@ -13,7 +13,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
-import javax.xml.registry.infomodel.User;
 
 @Named("citystore")
 @RequestScoped
@@ -25,7 +24,7 @@ public class CityStore {
 
     public List<City> allPage(int page, int size) {
         return em.createQuery("select e from City e", City.class)
-                .setFirstResult((page - 1)*size)
+                .setFirstResult((page - 1) * size)
                 .setMaxResults(size)
                 .getResultList();
     }
@@ -34,24 +33,24 @@ public class CityStore {
         return em.createQuery("select e from City e", City.class)
                 .getResultList();
     }
-    
+
     public Optional<City> find(Long id) {
         City found = em.find(City.class, id);
         return found == null ? Optional.empty() : Optional.of(found);
     }
-    
-    
+
     public Optional<City> findByName(String name) {
         try {
             return Optional.of(em.createQuery("select e from City e where e.Name = :name", City.class)
+                    .setParameter("name", name)
                     .getSingleResult());
         } catch (NoResultException ex) {
             return Optional.empty();
         }
     }
-    
-    
-    
-    
-    
+
+    public City save(City entity) {
+        return em.merge(entity);
+    }
+
 }

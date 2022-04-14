@@ -37,7 +37,7 @@ public class City implements Serializable{
     @Column(nullable = false)
     private String District;
     
-    @NotBlank
+    //@NotBlank
     @Column(nullable = false)
     private Integer Population;
     
